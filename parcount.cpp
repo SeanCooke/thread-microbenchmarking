@@ -132,13 +132,13 @@ int main(int argc, char *argv[]) {
         }
     }
     
-    std::cout << "Function Name\tFinal Couter Value\tThreads\tIncrements/Millisecond\n";
+    std::cout << "Function Name\tFinal Couter Value\tThreads\tIncrements/Millisecond\tSeconds\n";
     
     /*
      * t threads each increment sharedCounter i times in parallel with race condition
      * Incorrect value of sharedCounter will result due to race condition
      *
-     * Increments/Millisecond and t will be printed, threadVector, sharedCounter
+     * t, Increments/Millisecond, and seconds will be printed, threadVector, sharedCounter
      * and start will be reset
      */
     for(int iterator = 0; iterator < t; ++iterator) {
@@ -151,7 +151,8 @@ int main(int argc, char *argv[]) {
     }
     auto t2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> tDelta = t2-t1;
-    std::cout << "incrementiTimesRaceCondition\t" << sharedCounter<< "\t" << t << "\t" << i*1000/tDelta.count() << "\n";
+    auto seconds = tDelta.count();
+    std::cout << "incrementiTimesRaceCondition\t" << sharedCounter<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
     sharedCounter = 0;
     threadVector.clear();
     start = false;
@@ -160,7 +161,7 @@ int main(int argc, char *argv[]) {
      * t threads each increment sharedCounter i in parallel times using a mutex
      * sharedCounter will be set to i*t
      *
-     * Increments/Millisecond and t will be printed, threadVector, sharedCounter
+     * t, Increments/Millisecond, and seconds will be printed, threadVector, sharedCounter
      * and start will be reset
      */
     for(int iterator = 0; iterator < t; ++iterator) {
@@ -173,7 +174,8 @@ int main(int argc, char *argv[]) {
     }
     t2 = std::chrono::high_resolution_clock::now();
     tDelta = t2-t1;
-    std::cout << "incrementiTimesMutexLock\t" << sharedCounter<< "\t" << t << "\t" << i*1000/tDelta.count() << "\n";
+    seconds = tDelta.count();
+    std::cout << "incrementiTimesMutexLock\t" << sharedCounter<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
     sharedCounter = 0;
     threadVector.clear();
     start = false;
@@ -182,7 +184,7 @@ int main(int argc, char *argv[]) {
      * t threads each increment sharedCounter i times in parallel using a lock guard
      * sharedCounter will be set to i*t
      *
-     * Increments/Millisecond and t will be printed, threadVector, sharedCounter
+     * t, Increments/Millisecond, and seconds will be printed, threadVector, sharedCounter
      * and start will be reset
      */
     for(int iterator = 0; iterator < t; ++iterator) {
@@ -195,7 +197,8 @@ int main(int argc, char *argv[]) {
     }
     t2 = std::chrono::high_resolution_clock::now();
     tDelta = t2-t1;
-    std::cout << "incrementiTimesLockGuard\t" << sharedCounter<< "\t" << t << "\t" << i*1000/tDelta.count() << "\n";
+    seconds = tDelta.count();
+    std::cout << "incrementiTimesLockGuard\t" << sharedCounter<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
     sharedCounter = 0;
     threadVector.clear();
     start = false;
@@ -204,7 +207,7 @@ int main(int argc, char *argv[]) {
      * t threads each increment atomic int sharedCounterAtomic i times in parallel
      * sharedCounterAtomic will be set to i*t
      *
-     * Increments/Millisecond and t will be printed, threadVector, sharedCounter
+     * t, Increments/Millisecond, and seconds will be printed, threadVector, sharedCounter
      * and start will be reset
      */
     for(int iterator = 0; iterator < t; ++iterator) {
@@ -217,7 +220,8 @@ int main(int argc, char *argv[]) {
     }
     t2 = std::chrono::high_resolution_clock::now();
     tDelta = t2-t1;
-    std::cout << "incrementiTimesAtomic\t" << sharedCounterAtomic<< "\t" << t << "\t" << i*1000/tDelta.count() << "\n";
+    seconds = tDelta.count();
+    std::cout << "incrementiTimesAtomic\t" << sharedCounterAtomic<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
     sharedCounterAtomic = 0;
     threadVector.clear();
     start = false;
@@ -227,7 +231,7 @@ int main(int argc, char *argv[]) {
      * into the global vector localCounterVector.  After all threads have completed,
      * the sum of all elements in localCounterVector is stored in sharedCounter
      *
-     * Increments/Millisecond and t will be printed, threadVector, localCounterVector,
+     * t, Increments/Millisecond, and seconds will be printed, localCounterVector,
      * sharedCounter and start will be reset
      */
     for(int iterator = 0; iterator < t; ++iterator) {
@@ -244,7 +248,8 @@ int main(int argc, char *argv[]) {
     }
     t2 = std::chrono::high_resolution_clock::now();
     tDelta = t2-t1;
-    std::cout << "incrementiTimesLocalCounter\t" << sharedCounter<< "\t" << t << "\t" << i*1000/tDelta.count() << "\n";
+    seconds = tDelta.count();
+    std::cout << "incrementiTimesLocalCounter\t" << sharedCounter<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
     sharedCounter = 0;
     threadVector.clear();
     localCounterVector.clear();
