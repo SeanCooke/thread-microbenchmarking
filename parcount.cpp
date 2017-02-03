@@ -5,7 +5,6 @@
 #include <vector>                       // std::vector<>
 #include <mutex>                        // std::mutex
 #include <atomic>                       // std::atomic<int> and fetch_add()
-#include <future>                       // std::promise<int>, std::future<int>, and get()
 
 std::mutex sharedCounter_mtx;
 std::atomic<bool> start(false);         // to ensure threads run in parallel
