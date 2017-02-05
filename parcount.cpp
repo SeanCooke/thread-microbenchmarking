@@ -131,7 +131,7 @@ int main(int argc, char *argv[]) {
         }
     }
     
-    std::cout << "Function Name\tFinal Couter Value\tThreads\tIncrements/Millisecond\tSeconds\n";
+    std::cout << "Function Name\tFinal Counter Value\tThreads\tIncrements/Millisecond\tSeconds\n";
     
     /*
      * t threads each increment sharedCounter i times in parallel with race condition
