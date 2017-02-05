@@ -151,7 +151,7 @@ int main(int argc, char *argv[]) {
     auto t2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> tDelta = t2-t1;
     auto seconds = tDelta.count();
-    std::cout << "incrementiTimesRaceCondition\t" << sharedCounter<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
+    std::cout << "incrementiTimesRaceCondition\t" << sharedCounter<< "\t" << t << "\t" << sharedCounter*1000/seconds << "\t" << seconds << "\n";
     sharedCounter = 0;
     threadVector.clear();
     start = false;
@@ -174,7 +174,7 @@ int main(int argc, char *argv[]) {
     t2 = std::chrono::high_resolution_clock::now();
     tDelta = t2-t1;
     seconds = tDelta.count();
-    std::cout << "incrementiTimesMutexLock\t" << sharedCounter<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
+    std::cout << "incrementiTimesMutexLock\t" << sharedCounter<< "\t" << t << "\t" << sharedCounter*1000/seconds << "\t" << seconds << "\n";
     sharedCounter = 0;
     threadVector.clear();
     start = false;
@@ -197,7 +197,7 @@ int main(int argc, char *argv[]) {
     t2 = std::chrono::high_resolution_clock::now();
     tDelta = t2-t1;
     seconds = tDelta.count();
-    std::cout << "incrementiTimesLockGuard\t" << sharedCounter<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
+    std::cout << "incrementiTimesLockGuard\t" << sharedCounter<< "\t" << t << "\t" << sharedCounter*1000/seconds << "\t" << seconds << "\n";
     sharedCounter = 0;
     threadVector.clear();
     start = false;
@@ -220,7 +220,7 @@ int main(int argc, char *argv[]) {
     t2 = std::chrono::high_resolution_clock::now();
     tDelta = t2-t1;
     seconds = tDelta.count();
-    std::cout << "incrementiTimesAtomic\t" << sharedCounterAtomic<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
+    std::cout << "incrementiTimesAtomic\t" << sharedCounterAtomic<< "\t" << t << "\t" << sharedCounterAtomic*1000/seconds << "\t" << seconds << "\n";
     sharedCounterAtomic = 0;
     threadVector.clear();
     start = false;
@@ -248,7 +248,7 @@ int main(int argc, char *argv[]) {
     t2 = std::chrono::high_resolution_clock::now();
     tDelta = t2-t1;
     seconds = tDelta.count();
-    std::cout << "incrementiTimesLocalCounter\t" << sharedCounter<< "\t" << t << "\t" << i*1000/seconds << "\t" << seconds << "\n";
+    std::cout << "incrementiTimesLocalCounter\t" << sharedCounter<< "\t" << t << "\t" << sharedCounter*1000/seconds << "\t" << seconds << "\n";
     sharedCounter = 0;
     threadVector.clear();
     localCounterVector.clear();
